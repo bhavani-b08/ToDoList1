@@ -113,7 +113,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
       
       const currentShareWith = task.shareWith || [];
-      const newShareWith = [...new Set([...currentShareWith, ...emails])];
+      const uniqueEmails = [...currentShareWith];
+      for (const email of emails) {
+        if (!uniqueEmails.includes(email)) {
+          uniqueEmails.push(email);
+        }
+      }
+      const newShareWith = uniqueEmails;
       
       const updatedTask = await storage.updateTask(taskId, { shareWith: newShareWith }, userId);
       res.json(updatedTask);
