@@ -21,7 +21,7 @@ const userRoutes = require('./routes/users');
 
 // Import middleware
 const { errorHandler } = require('./middleware/errorHandler');
-const { notFound } = require('./middleware/notFound');
+const notFound = require('./middleware/notFound');
 
 const app = express();
 const server = createServer(app);

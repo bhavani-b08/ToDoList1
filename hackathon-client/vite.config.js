@@ -20,7 +20,12 @@ export default defineConfig({
         changeOrigin: true,
         ws: true,
       }
-    }
+    },
+    // ✅ Add this line to fix URI issues when refreshing or deep linking
+    fs: {
+      strict: false,
+    },
+    historyApiFallback: true
   },
   build: {
     outDir: 'dist',
